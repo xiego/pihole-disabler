@@ -4,6 +4,12 @@
 PIHOLE_ADDRESSES_FILE="./.pihole.addresses"
 API_KEY_FILE="./.piholeapi.key"
 
+# Check if Pi-hole addresses file or API key file does not exist, or if --setup or -s is used
+if [ ! -f "${PIHOLE_ADDRESSES_FILE}" ] || [ ! -f "${API_KEY_FILE}" ] || [ "$1" == "--setup" ] || [ "$1" == "-s" ]; then
+    setup_pihole
+    exit 0
+fi
+
 # Function to setup Pi-hole addresses and API key
 setup_pihole() {
     echo "Setting up Pi-hole configuration."
