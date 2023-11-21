@@ -53,12 +53,17 @@ toggle_pihole() {
 
     case "${action}" in
         disable)
-            if ! [[ "$seconds" =~ ^[1-9][0-9]{0,3}$ && "$seconds" -le 3600 ]]; then
-                echo "Error: Seconds must be a valid number between 1 and 3600 for 'disable' action."
+            if ! [[ "$seconds" =~ ^[0-9]{1,4}$ && "$seconds" -le 3600 ]]; then
+                echo "Error: Seconds must be a valid number between 0 and 3600 for 'disable' action."
                 exit 1
             fi
-            local toggle_url="${pihole_url}?auth=${API_KEY}&disable=${seconds}"
-            echo "Pi-hole disabled for ${seconds} seconds."
+            if [ "$seconds" -eq 0 ]; then
+                local toggle_url="${pihole_url}?auth=${API_KEY}&disable"
+                echo "Pi-hole disabled indefinitely."
+            else
+                local toggle_url="${pihole_url}?auth=${API_KEY}&disable=${seconds}"
+                echo "Pi-hole disabled for ${seconds} seconds."
+            fi
             ;;
         enable)
             local toggle_url="${pihole_url}?auth=${API_KEY}&enable"
