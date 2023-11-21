@@ -2,3 +2,6 @@ Run with --setup or -s to change options.
 Has the capability of storing API key with password protected encryption.
 Pass seconds as 0 to disable indefinitely
 Supports multiple addresses. (eg. Try pi.hole first then failover to IP)
+
+Future:
+Add pihole status check functionality (eg. pidisable.sh --status to return state and time remaining if possible within API)
