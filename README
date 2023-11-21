@@ -1,0 +1,3 @@
+Run with --setup or -s to change options.
+Has the capability of storing API key with password protected encryption.
+Does not have capability of disabling indefinitely, will add sometime. (I think perhaps passing 0 will do so?)
